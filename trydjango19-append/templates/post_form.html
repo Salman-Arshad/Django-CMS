@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block extraHead %}{{ form.media }}{% endblock %}
+{% block content %}
+
+    <div class="container">
+
+
+        <h1>Form</h1>
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+            {{ form|crispy}}
+            <input type="submit"value="Create Post" class="btn btn-default"/>
+        </form>
+        </div>
+
+{% endblock content %}
+
+{% block script2 %}
+    <script>
+    $(document).ready(function () {
+        $(".fr-wrapper a").remove()
+        $(".fr-view").addClass("incHeight")
+        $(".incHeight").css("min-height",140)
+    })
+
+    </script>
+{% endblock script2 %}

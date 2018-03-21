@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+    {% block style_block %}
+        #ArticlesDiv {
+            height: 10000px;
+            position: absolute;
+        }
+    {% endblock %}
+    </style>
+    <!-- All articles will be loaded in following div -->
+<div id="ArticlesDiv"></div>
+    <script>
+        var postOffset =0;
+        ArticleLoader();
+
+        console.log("postOffset");
+        function ArticleLoader () {
+            url1  = '{{ request.build_absolute_uri }}ajax-posts/?offset='+postOffset;
+
+            $.ajax({
+                url: url1,
+                dataType: 'html',
+                success: function (data) {
+                    console.log(data)
+                    $("#ArticlesDiv").append(data);
+                    postOffset+=10;
+                    console.log(postOffset)
+                }
+
+            })
+        }
+        var $window = $(window);
+            $(document).scroll(function prodScrollPosition() {
+                var distance = $window.scrollTop() + $window.height();
+                if ($(window).scrollTop() >= $(document).height() - $(window).height() - 108) {
+                    console.log($window.height);
+                    ArticleLoader()
+                }
+            })
+
+    </script>
+{% endblock %}

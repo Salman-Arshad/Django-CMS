@@ -1,0 +1,43 @@
+{% load staticfiles%}
+{% for obj in qs %}
+                <div class="row">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100">
+                        <div class="single-post post-style-1">
+
+                            <div class="blog-image"><img src="{{ obj.image.url }}" alt="Blog Image"></div>
+
+                            <a class="avatar" href="#"><img class="img-responsive" src="{% static 'images/dumyavatar.jpg'%}" alt="Profile Image"></a>
+
+                            <div class="blog-info">
+
+                                <h4 class="title"><a class = "contt" href='{{ obj.get_absolute_url }}'><b>{{ obj.get_markdown }}</b></a></h4>
+
+                                <ul class="post-footer">
+                                    <li><a href="#"><i class="ion-heart"></i>57</a></li>
+                                    <li><a href="#"><i class="ion-chatbubble"></i>{{ obj.comments }}</a></li>
+                                    <li><a href="#"><i class="ion-eye"></i>{{ obj.views }}</a></li>
+                                </ul>
+
+                            </div><!-- blog-info -->
+                        </div><!-- single-post -->
+                    </div><!-- card -->
+                </div>
+{% endfor %}
+<!-- <div class="row">
+    <div class="col-sm-12">
+        <div class="thumbnail">
+            {% if obj.image %}
+            <img src={{ obj.image.url }} class="img-responsive alt="">
+            {% endif %}
+            <div class="caption res-img">
+                <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.slug }} </a><span>{% if obj.draft %} <span style="color:red;">Draft  </span></span>{% endif %}{{ obj.timestamp|timesince }} ago</small></h3>
+                <p>Author: {{ obj.user }}</p>
+                <p class = "content-markdown">{{ obj.get_markdown|truncatechars_html:150}}</p>
+                <p><a href="{{obj.get_absolute_url}}" class="btn btn-primary" role="button">View</a></p>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div> -->

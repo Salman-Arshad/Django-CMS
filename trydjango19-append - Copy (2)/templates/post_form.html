@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block extraHead %}{{ form.media }}{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-sm-6">
+            <div class="thumbnail" style="min-height: 300px;">
+                <h1 style="text-align: center;margin-top: 0;">Preview:</h1>
+                <div class="content-preview">
+                    <h3 id="preview-title">
+                        <h1></h1>
+                    </h3>
+                    <p id="preview-content"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 thumbnail " style="">
+        <h1>Form</h1>
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+            {{ form|crispy }}
+            <input type="submit"value="Create Post" class="btn btn-default"/>
+        </form>
+        </div>
+    </div>
+{% endblock content %}
+{% block script2 %}
+    <script>
+        $(document).ready(function () {
+
+            $(".res-img img").each(function () {
+                $(this).addClass("img-responsive")
+            });
+            //title
+            var titleInput=$("#id_title");
+
+            //content
+            var contentInput =$("#id_content");
+            setContent(contentInput.val());
+            contentInput.keyup(function () {
+                var newContent = $(this).val();
+                setContent(newContent);
+            });
+
+            function setContent(value) {
+                var markedContent = marked(value);
+                 $("#preview-content").html(markedContent);
+                 $("#preview-content img").each(function () {
+                     $(this).addClass("img-responsive");
+                 })
+
+
+            }
+            function setTitle(value) {
+                $("#preview-title").text(value);
+            }
+            setTitle(titleInput.val())
+            titleInput.keyup(function () {
+                setTitle($(this).val());
+            })
+        })
+
+    </script>
+{% endblock script2 %}

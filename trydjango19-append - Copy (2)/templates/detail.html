@@ -1,0 +1,81 @@
+
+{% extends "base.html" %}
+{% load urlify %}
+{% block head %}
+    {{ instance.title }} | {{ block.super }}
+{% endblock head %}
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3 ">
+
+        {% if instance.image %}
+        <img src={{ instance.image.url }} class="img-responsive alt="">
+        {% endif %}
+
+        <h1>{{ title }} <small> {% if instance.draft %} <span style="color: red">Draft</span>{% endif %} {{ instance.publish}}.</small></h1>
+        {% if instance.image %}
+
+        {% endif %}
+
+        <p>Author:{{ instance.user.get_full_name }}</p>
+    <p>
+    <div class="fb-like" data-width=""></div>
+   <div class = "res-img"> <p>{{ instance.get_markdown}}<br></p></div>
+        <hr>
+    <div>
+        <p class="lead">Comments:</p>
+            {% for foo in comments %}
+                <div>
+                    {{ foo.content  }}
+                    <br>
+                    <small>{{ foo.user }} | {{ foo.timestamp|timesince }} ago</small>
+                    <hr>
+                </div>
+            {% endfor %}
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--FaceBook-->
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+         Facebook
+        </a>
+    <!--Twitter-->
+        <a href="https://twitter.com/home?status={{ instance.content|urlify }}{{ request.build_absolute_uri }}">
+        - Twitter
+        </a>
+    <!--GooglePlus-->
+        <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>- GooglePlus</a>
+
+    <!--LinkedIn-->
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ instance.title }}&summary={{ instance.content|urlify }}&source={{ request.build_absolute_uri }}">
+            - Linkedin
+        </a>
+    <!--Reddit-->
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.title }}">- Reddit</a>
+
+    </div>
+{% endblock content %}
+<style>
+
+
+{% block style_block %}
+    img{
+        padding-top: 10px;
+    }
+{% endblock style_block %}
+</style>

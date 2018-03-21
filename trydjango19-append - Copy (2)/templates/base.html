@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <meta charset="UTF-8">
+        <title>{% block head %}Try Django 1.9 {% endblock head %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ionicons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.12/marked.js"></script>
+        <style>
+            {% block style_block %}{% endblock style_block %}
+        </style>
+        {% block extraHead %}{% endblock extraHead %}
+        </head>
+    <body>
+
+    <nav>
+		<div class="logo">LOGO</div>
+			<ul>
+				<li><a href="">home</a></li>
+				<li><a href="">user</a></li>
+				<li><a href="">blog</a></li>
+				<li><a href=""class="active">contact us</a></li>
+			</ul>
+
+	</nav>
+       {% include "messages_display.html" %}
+        <div class="kk" >
+            {%if request.user %}
+
+        {% endif %}
+            {% block content %}{% endblock content %}
+        </div>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </body>
+    {% block script2 %}{% endblock script2%}
+    <script>
+        $(window).on('scroll',function  () {
+        if($(window).scrollTop()) {
+          $('nav').addClass("black")
+        }else{
+          $('nav').removeClass("black")
+        }
+      })
+    </script>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+</html>
+
