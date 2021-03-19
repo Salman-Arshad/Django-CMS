@@ -40,7 +40,7 @@ django-social-widgets==0.4.0
 django-star-ratings==0.6.0
 django-widget-tweaks==1.4.1
 django-wpadmin==1.7.4
-djangorestframework==3.7.7
+djangorestframework==3.11.2
 easy-thumbnails==2.5
 enum34==1.1.6
 feedparser==5.1.3
