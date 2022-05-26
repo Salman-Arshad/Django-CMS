@@ -94,7 +94,7 @@ six==1.10.0
 ssh-import-id==5.5
 swapper==1.1.0
 system-service==0.3
-tensorflow==1.4.1
+tensorflow==2.7.2
 tensorflow-tensorboard==0.4.0rc3
 tqdm==4.19.5
 ubuntu-drivers-common==0.0.0
